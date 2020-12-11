@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">Swim App</string>
+    <string name="loading">Loading...</string>
+    <string name="no_connection_avaliable">No connection available</string>
+    <string name="swim_sessions">Swim sessions</string>
+    <string name="monday">Monday</string>
+    <string name="default_time">00:00:00</string>
+    <string name="default_lap">0 laps</string>
+    <string name="default_distance">0 m</string>
+    <string name="new_session">New session</string>
+    <string name="session_goal_default_value">0</string>
+</resources>

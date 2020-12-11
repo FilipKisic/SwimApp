@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="splash_screen_loading_text_size">26sp</dimen>
+    <dimen name="activity_padding">20dp</dimen>
+    <dimen name="swim_info_card_padding">5dp</dimen>
+    <dimen name="title_text_size">34sp</dimen>
+    <dimen name="image_size">40dp</dimen>
+    <dimen name="swim_image_size">50dp</dimen>
+    <dimen name="day_in_week_text_size">24sp</dimen>
+    <dimen name="info_text_size">20sp</dimen>
+    <dimen name="info_row_padding_top">5dp</dimen>
+    <dimen name="info_time_text_size">36sp</dimen>
+    <dimen name="info_time_padding">20dp</dimen>
+    <dimen name="title_margin_bottom">20dp</dimen>
+    <dimen name="card_margin_bottom">20dp</dimen>
+    <dimen name="session_goal_padding">15dp</dimen>
+    <dimen name="session_goal_unit_margin_left">10dp</dimen>
+    <dimen name="session_goal_unit_text_size">26sp</dimen>
+    <dimen name="session_goal_image_size">55dp</dimen>
+    <dimen name="goal_value_text_size">30sp</dimen>
+    <dimen name="medium_rounded">15dp</dimen>
+    <dimen name="light_rounded">10dp</dimen>
+    <dimen name="button_margin">8dp</dimen>
+    <dimen name="button_text_size">24sp</dimen>
+</resources>
