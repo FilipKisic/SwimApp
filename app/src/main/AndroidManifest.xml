@@ -4,6 +4,8 @@
 
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 
     <application
         android:allowBackup="true"
@@ -12,11 +14,25 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <receiver
+            android:name=".services.WeatherReceiver"
+            android:enabled="true"
+            android:exported="false" />
+
+        <service
+            android:name=".services.WeatherService"
+            android:enabled="true"
+            android:exported="false"
+            android:permission="android.permission.BIND_JOB_SERVICE" />
+
         <activity
             android:name=".MainActivity"
             android:theme="@style/AppThemeNoActionBar" />
         <activity
             android:name=".NewSession"
+            android:theme="@style/AppThemeNoActionBar" />
+        <activity
+            android:name=".Session"
             android:theme="@style/AppThemeNoActionBar" />
         <activity
             android:name=".SplashScreenActivity"

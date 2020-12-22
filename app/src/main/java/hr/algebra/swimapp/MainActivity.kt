@@ -1,43 +1,43 @@
 package hr.algebra.swimapp
 
-import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import hr.algebra.swimapp.components.SwimInfoCard
-import hr.algebra.swimapp.framework.startActivity
+import android.view.MenuItem
+import androidx.appcompat.app.AlertDialog
+import androidx.appcompat.app.AppCompatActivity
+import androidx.navigation.Navigation
+import androidx.navigation.ui.NavigationUI
 import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.android.synthetic.main.swim_info_card.view.*
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        initListeners()
-        /*Will be removed, just test method*/
-        /*!!RECYCLER VIEW!!*/
-        addTwoWidgets()
+        initNavigation()
     }
 
-    private fun initListeners() {
-        ivNewSession.setOnClickListener {
-            startActivity<NewSession>()
+    private fun initNavigation() {
+        val navController = Navigation.findNavController(this, R.id.navHostFragment)
+        NavigationUI.setupWithNavController(navigationView, navController)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            R.id.menuExit -> {
+                exitApp()
+                return true
+            }
         }
+        return super.onOptionsItemSelected(item)
     }
 
-    private fun addTwoWidgets() {
-        val session = SwimInfoCard(this)
-        session.tvLapCount.text = "40 laps"
-        session.tvDistance.text  = "2000 m"
-        session.tvDayInWeek.text = "Tuesday"
-        session.tvTime.text = "01:12:45"
-
-        val sessionTwo = SwimInfoCard(this)
-        sessionTwo.tvLapCount.text = "10 laps"
-        sessionTwo.tvDistance.text  = "500 m"
-        sessionTwo.tvDayInWeek.text = "Wednesday"
-        sessionTwo.tvTime.text = "00:10:32"
-
-        session_list.addView(session)
-        session_list.addView(sessionTwo)
+    private fun exitApp() {
+        AlertDialog.Builder(this).apply {
+            setTitle(R.string.exit)
+            setMessage("Are you sure?")
+            setCancelable(true)
+            setPositiveButton("OK") { _, _ -> finish() }
+            setNegativeButton(getString(R.string.cancel), null)
+            show()
+        }
     }
 }

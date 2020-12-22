@@ -14,8 +14,8 @@ class ActionButton @JvmOverloads constructor(
     attrs: AttributeSet? = null,
     defStyleAttr: Int = 0
 ) : LinearLayout(context, attrs, defStyleAttr) {
-    private var buttonBackgroundColor: Drawable
-    private var buttonText: String
+    var buttonBackgroundColor: Drawable
+    var buttonText: String
 
     init {
         LayoutInflater.from(context).inflate(R.layout.action_button, this, true)

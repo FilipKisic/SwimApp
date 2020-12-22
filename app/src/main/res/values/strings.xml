@@ -9,4 +9,26 @@
     <string name="default_distance">0 m</string>
     <string name="new_session">New session</string>
     <string name="session_goal_default_value">0</string>
+    <string name="start_time">00:00:00</string>
+    <string name="total_length">Total length:</string>
+    <string name="start_total_distance">0m</string>
+    <string name="laps">Laps:</string>
+    <string name="start_lap">0</string>
+    <string name="to_go">To go:</string>
+    <string name="pause">Pause:</string>
+    <string name="start_pause">00:00</string>
+    <string name="stop">Stop</string>
+    <string name="start">Start</string>
+    <string name="cancel">Cancel</string>
+    <string name="sessions">Sessions</string>
+    <string name="exit">Exit</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="about">About</string>
+    <string name="description_application_for_capturing_swimming_activity_in_a_swimming_pool">Description: Application for capturing swimming activity in a swimming pool</string>
+    <string name="developer">Developer: Filip Kisić</string>
+    <string name="company">Company: University College Algebra</string>
+    <string name="programming_language">Programming language: Kotlin</string>
+    <string name="course">Course: Application Development for Mobile Devices</string>
+    <string name="permission_rationale">We need your location for fully functional application. You can change location permission in Settings.</string>
 </resources>

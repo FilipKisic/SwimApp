@@ -1,18 +1,31 @@
 package hr.algebra.swimapp.framework
 
 import android.app.Activity
+import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
+import android.content.pm.PackageManager
 import android.net.ConnectivityManager
 import android.net.NetworkCapabilities
 import android.preference.PreferenceManager
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
+import androidx.fragment.app.Fragment
 
 
-inline fun <reified T : Activity> Context.startActivity() =
-    startActivity(Intent(this, T::class.java))
+inline fun <reified T : Activity> Context.startActivity() = Intent(this, T::class.java).apply {
+    addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+    startActivity(this)
+}
+inline fun <reified T : Activity> Fragment.startActivity() = startActivity(Intent(requireContext(), T::class.java))
+inline fun <reified T : BroadcastReceiver> Context.sendBroadcast() = sendBroadcast(Intent(this, T::class.java))
 
-fun Context.getBooleanPreference(key: String) =
-    PreferenceManager.getDefaultSharedPreferences(this).getBoolean(key, false)
+fun Context.setBooleanPreference(key: String, value: Boolean) = PreferenceManager.getDefaultSharedPreferences(this)
+    .edit()
+    .putBoolean(key, value)
+    .apply()
+
+fun Context.getBooleanPreference(key: String) = PreferenceManager.getDefaultSharedPreferences(this).getBoolean(key, false)
 
 fun Context.isOnline(): Boolean {
     val connectivityManager = getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
