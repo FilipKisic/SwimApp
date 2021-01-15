@@ -43,7 +43,7 @@
                 android:layout_width="0dp"
                 android:layout_height="@dimen/image_size"
                 android:layout_gravity="center"
-                android:layout_weight="0.7"
+                android:layout_weight="1"
                 android:src="@drawable/lap" />
 
             <TextView
@@ -80,7 +80,7 @@
                 android:layout_width="0dp"
                 android:layout_height="@dimen/image_size"
                 android:layout_gravity="center"
-                android:layout_weight="0.7"
+                android:layout_weight="1"
                 android:src="@drawable/length" />
 
             <TextView

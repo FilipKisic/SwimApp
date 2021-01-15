@@ -12,6 +12,11 @@ import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
+var weatherDescription = "No description"
+var weatherCity = "Not available"
+var weatherTemp = 0.0
+var weatherFeelsLike = 0.0
+
 class WeatherFetcher(private val context: Context) {
     private var weatherAPI: WeatherAPI
 
@@ -41,21 +46,19 @@ class WeatherFetcher(private val context: Context) {
 
             override fun onResponse(call: Call<WeatherInfo>, response: Response<WeatherInfo>) {
                 if (response.body() != null) {
-                    printData(response.body()!!)
+                    setWeatherData(response.body()!!)
                 }
             }
 
         })
     }
 
-    private fun printData(data: WeatherInfo) {
+    private fun setWeatherData(data: WeatherInfo) {
         GlobalScope.launch {
-            println("LAT: ${data.coord.lat}")
-            println("LON: ${data.coord.lon}")
-            println("DESC: ${data.weather.first().main}")
-            println("TEMP: ${data.main.temp}")
-            println("FEELS LIKE: ${data.main.feelsLike}")
-            println("CITY: ${data.name}")
+            weatherDescription = data.weather.first().main
+            weatherCity = data.name
+            weatherTemp = data.main.temp
+            weatherFeelsLike = data.main.feelsLike
             context.sendBroadcast<WeatherReceiver>()
         }
     }

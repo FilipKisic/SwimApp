@@ -42,7 +42,7 @@ class SessionListFragment : Fragment() {
 
     private fun generateTwoCards(): List<SwimInfo> {
         val list = ArrayList<SwimInfo>()
-        for (i in 1..3) {
+        for (i in 1..2) {
             val date = getCurrentDateTime()
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
                 list.add(
@@ -55,7 +55,6 @@ class SessionListFragment : Fragment() {
                 )
             }
         }
-        println(list.size)
         return list
     }
 }

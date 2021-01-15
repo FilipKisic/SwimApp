@@ -1,11 +1,14 @@
 package hr.algebra.swimapp.fragments
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import hr.algebra.swimapp.R
+import hr.algebra.swimapp.api.*
+import kotlinx.android.synthetic.main.fragment_weather.*
 
 class AboutFragment : Fragment() {
 

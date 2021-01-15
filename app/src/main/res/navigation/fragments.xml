@@ -12,6 +12,16 @@
         tools:layout="@layout/fragment_session_list" />
 
     <fragment
+        android:id="@+id/menuWeather"
+        android:name="hr.algebra.swimapp.fragments.WeatherFragment"
+        android:label="Weather"
+        tools:layout="@layout/fragment_weather">
+        <!--<action
+            android:id="@+id/action_menuWeather_self"
+            app:destination="@id/menuWeather" />-->
+    </fragment>
+
+    <fragment
         android:id="@+id/menuAbout"
         android:name="hr.algebra.swimapp.fragments.AboutFragment"
         android:label="@string/about"

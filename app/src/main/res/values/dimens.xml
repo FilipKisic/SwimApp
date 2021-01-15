@@ -25,4 +25,7 @@
     <dimen name="button_margin_top">15dp</dimen>
     <dimen name="session_details_padding">10dp</dimen>
     <dimen name="navigation_header_margin_top">20dp</dimen>
+    <dimen name="small_text_size">16sp</dimen>
+    <dimen name="button_width">120dp</dimen>
+    <dimen name="finish_margin_start">110dp</dimen>
 </resources>

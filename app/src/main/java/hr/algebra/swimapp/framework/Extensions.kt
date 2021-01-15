@@ -1,6 +1,7 @@
 package hr.algebra.swimapp.framework
 
 import android.app.Activity
+import android.app.AlertDialog
 import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
@@ -8,9 +9,12 @@ import android.content.pm.PackageManager
 import android.net.ConnectivityManager
 import android.net.NetworkCapabilities
 import android.preference.PreferenceManager
+import android.widget.Toast
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
+import hr.algebra.swimapp.components.SessionGoalCard
+import kotlinx.android.synthetic.main.session_goal_card.view.*
 
 
 inline fun <reified T : Activity> Context.startActivity() = Intent(this, T::class.java).apply {
@@ -38,4 +42,12 @@ fun Context.isOnline(): Boolean {
         }
     }
     return false
+}
+
+fun SessionGoalCard.isValid(context: Context, unit: String): Boolean{
+    if(this.etInput.text.toString().toInt() <= 0){
+        Toast.makeText(context, "$unit value must be greater than 0", Toast.LENGTH_LONG).show()
+        return false
+    }
+    return true
 }

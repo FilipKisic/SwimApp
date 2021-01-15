@@ -17,10 +17,17 @@
         android:textSize="@dimen/title_text_size" />
 
     <hr.algebra.swimapp.components.SessionGoalCard
-        android:id="@+id/sgcGoalMeters"
+        android:id="@+id/sgcGoalRepMeters"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:unit_text_color="@color/colorAccent" />
+
+    <hr.algebra.swimapp.components.SessionGoalCard
+        android:id="@+id/sgcGoalRepetition"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:icon="@drawable/repeat"
+        app:unit="repetition" />
 
     <hr.algebra.swimapp.components.SessionGoalCard
         android:id="@+id/sgcGoalPause"
@@ -37,14 +44,14 @@
 
         <hr.algebra.swimapp.components.ActionButton
             android:id="@+id/btnStart"
-            android:layout_width="120dp"
+            android:layout_width="@dimen/button_width"
             android:layout_height="wrap_content"
             app:background_color="@drawable/button_background_yellow"
             app:button_text="@string/start" />
 
         <hr.algebra.swimapp.components.ActionButton
             android:id="@+id/btnCancel"
-            android:layout_width="120dp"
+            android:layout_width="@dimen/button_width"
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
             app:background_color="@drawable/button_background_blue"

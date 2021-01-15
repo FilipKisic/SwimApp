@@ -9,7 +9,6 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
-import hr.algebra.swimapp.framework.getBooleanPreference
 import hr.algebra.swimapp.framework.isOnline
 import hr.algebra.swimapp.framework.startActivity
 import hr.algebra.swimapp.services.WeatherService
@@ -18,7 +17,6 @@ import pub.devrel.easypermissions.EasyPermissions
 
 private const val DELAY = 6000L
 const val DATA_IMPORTED = "hr.algebra.swimapp.data_imported"
-private const val LOCATION_REQUEST_CODE = 124
 lateinit var fusedLocationClient: FusedLocationProviderClient
 
 class SplashScreenActivity : AppCompatActivity() {

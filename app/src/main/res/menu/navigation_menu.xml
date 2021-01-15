@@ -6,6 +6,10 @@
         android:title="@string/sessions" />
 
     <item
+        android:id="@+id/menuWeather"
+        android:title="@string/weather" />
+
+    <item
         android:id="@+id/menuAbout"
         android:title="@string/about" />
 

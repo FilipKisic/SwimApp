@@ -31,4 +31,5 @@
     <string name="programming_language">Programming language: Kotlin</string>
     <string name="course">Course: Application Development for Mobile Devices</string>
     <string name="permission_rationale">We need your location for fully functional application. You can change location permission in Settings.</string>
+    <string name="weather">Weather</string>
 </resources>

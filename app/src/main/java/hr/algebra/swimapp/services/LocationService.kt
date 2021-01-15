@@ -9,9 +9,9 @@ import pub.devrel.easypermissions.AfterPermissionGranted
 import pub.devrel.easypermissions.EasyPermissions
 
 private const val LOCATION_REQUEST_CODE = 124
-
 var lat = 0.0
 var long = 0.0
+
 @SuppressLint("MissingPermission")
 @AfterPermissionGranted(LOCATION_REQUEST_CODE)
 fun Activity.getCurrentLocation() {
@@ -20,8 +20,6 @@ fun Activity.getCurrentLocation() {
             if (location != null) {
                 lat = location.latitude
                 long = location.longitude
-                println("LATITUDE: ${location.latitude}")
-                println("LONGITUDE: ${location.longitude}")
             }
         }
     } else {
