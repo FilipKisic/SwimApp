@@ -38,6 +38,7 @@ class SplashScreenActivity : AppCompatActivity() {
 
     private fun loadData() {
         //inside if getBooleanPreference(DATA_IMPORTED)
+        //remove if, in this case it is superfluous
         if (false) {
             Handler(Looper.getMainLooper()).postDelayed({
                 startActivity<MainActivity>()

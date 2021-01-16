@@ -17,7 +17,6 @@ import hr.algebra.swimapp.utils.getCurrentDateTime
 import kotlinx.android.synthetic.main.fragment_session_list.*
 import java.time.LocalTime
 
-
 class SessionListFragment : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -40,7 +39,7 @@ class SessionListFragment : Fragment() {
         }
     }
 
-    private fun generateTwoCards(): List<SwimInfo> {
+    private fun generateTwoCards(): MutableList<SwimInfo> {
         val list = ArrayList<SwimInfo>()
         for (i in 1..2) {
             val date = getCurrentDateTime()
