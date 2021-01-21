@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import hr.algebra.swimapp.NewSession
 import hr.algebra.swimapp.R
 import hr.algebra.swimapp.components.SwimInfoAdapter
+import hr.algebra.swimapp.dal.SWIM_INFO_PROVIDER_CONTENT_URI
 import hr.algebra.swimapp.framework.startActivity
 import hr.algebra.swimapp.model.SwimInfo
 import hr.algebra.swimapp.utils.format
@@ -27,7 +28,7 @@ class SessionListFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         initListeners()
 
-        val cards = generateTwoCards()
+        val cards = collectSessionsFromDatabase()
         rvSwimInfoList.adapter = SwimInfoAdapter(cards)
         rvSwimInfoList.layoutManager = LinearLayoutManager(requireContext())
         rvSwimInfoList.setHasFixedSize(true)
@@ -39,20 +40,20 @@ class SessionListFragment : Fragment() {
         }
     }
 
-    private fun generateTwoCards(): MutableList<SwimInfo> {
+    private fun collectSessionsFromDatabase(): MutableList<SwimInfo> {
         val list = ArrayList<SwimInfo>()
-        for (i in 1..2) {
-            val date = getCurrentDateTime()
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                list.add(
-                    SwimInfo(
-                        date.format("EEEE"),
-                        80,
-                        LocalTime.of(1, 12, 45),
-                        2000
-                    )
+        val cursor = context?.contentResolver?.query(SWIM_INFO_PROVIDER_CONTENT_URI, null, null, null, null)
+        if (cursor != null && cursor.moveToNext()) {
+            println(cursor.getColumnIndex("_id"))
+            list.add(
+                SwimInfo(
+                    cursor.getInt(cursor.getColumnIndex("_id")).toLong(),
+                    cursor.getString(cursor.getColumnIndex("dayOfWeek")),
+                    cursor.getInt(cursor.getColumnIndex("laps")),
+                    cursor.getString(cursor.getColumnIndex("totalTime")),
+                    cursor.getInt(cursor.getColumnIndex("distance"))
                 )
-            }
+            )
         }
         return list
     }

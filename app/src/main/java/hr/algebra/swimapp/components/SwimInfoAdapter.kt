@@ -29,7 +29,7 @@ class SwimInfoAdapter(private val swimInfoList: List<SwimInfo>) : RecyclerView.A
         val currentInfo = swimInfoList[position]
         holder.dayOfWeek.text = currentInfo.dayOfWeek
         holder.lapCount.text = if(currentInfo.laps != 1) "${currentInfo.laps} laps" else "${currentInfo.laps} lap"
-        holder.time.text = currentInfo.time.toString()
+        holder.time.text = currentInfo.totalTime.toString()
         holder.distance.text = "${currentInfo.distance} m"
     }
 }

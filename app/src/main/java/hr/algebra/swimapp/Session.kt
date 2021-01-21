@@ -1,16 +1,21 @@
 package hr.algebra.swimapp
 
+import android.content.ContentValues
 import android.os.Build
 import android.os.Bundle
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import com.github.nisrulz.sensey.Sensey
+import hr.algebra.swimapp.dal.SWIM_INFO_PROVIDER_CONTENT_URI
+import hr.algebra.swimapp.model.SwimInfo
 import kotlinx.android.synthetic.main.action_button.view.*
 import kotlinx.android.synthetic.main.activity_session.*
 import timerx.Stopwatch
 import timerx.StopwatchBuilder
 import timerx.Timer
 import timerx.TimerBuilder
+import java.text.SimpleDateFormat
+import java.util.*
 import java.util.concurrent.TimeUnit
 
 private lateinit var buttonState: String
@@ -129,11 +134,23 @@ class Session : AppCompatActivity() {
         stopwatch.stop()
         btnStartStop.tvButtonText.setText(R.string.start)
         btnStartStop.isEnabled = false
-        println("${stopwatch.getTimeIn(TimeUnit.HOURS)}:${stopwatch.getTimeIn(TimeUnit.MINUTES) % 60}:${stopwatch.getTimeIn(TimeUnit.SECONDS) % 60}")
-        //finish()
-        //save data to database
+        btnFinish.isEnabled = false
+        saveInDatabase()
         //create card in sessionList
+        finish()
     }
 
     private fun toggleState() = btnStartStop.tvButtonText.setText(if (buttonState == "Start") R.string.stop else R.string.start)
+
+    @RequiresApi(Build.VERSION_CODES.O)
+    private fun saveInDatabase() {
+        val dayOfWeekFormat = SimpleDateFormat("EEEE", Locale.ENGLISH)
+        val values = ContentValues().apply {
+            put(SwimInfo::dayOfWeek.name, dayOfWeekFormat.format(Date()).toString())
+            put(SwimInfo::laps.name, laps)
+            put(SwimInfo::totalTime.name, tvStopwatch.text.toString())
+            put(SwimInfo::distance.name, currentDistance)
+        }
+        contentResolver.insert(SWIM_INFO_PROVIDER_CONTENT_URI, values)
+    }
 }
