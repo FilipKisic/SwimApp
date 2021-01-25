@@ -49,7 +49,6 @@ class WeatherFetcher(private val context: Context) {
                     setWeatherData(response.body()!!)
                 }
             }
-
         })
     }
 

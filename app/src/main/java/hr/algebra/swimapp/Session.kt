@@ -7,6 +7,7 @@ import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import com.github.nisrulz.sensey.Sensey
 import hr.algebra.swimapp.dal.SWIM_INFO_PROVIDER_CONTENT_URI
+import hr.algebra.swimapp.framework.startPreviousActivity
 import hr.algebra.swimapp.model.SwimInfo
 import kotlinx.android.synthetic.main.action_button.view.*
 import kotlinx.android.synthetic.main.activity_session.*
@@ -19,33 +20,42 @@ import java.util.*
 import java.util.concurrent.TimeUnit
 
 private lateinit var buttonState: String
-private var goalDistance = 0
-private var currentDistance = 0
-private var laps = 0
-private var togo = 0
-private var repetitions = 0
-private var pause = 0
 private lateinit var stopwatch: Stopwatch
 private lateinit var timer: Timer
 
 class Session : AppCompatActivity() {
+    private var goalDistance = 0
+    private var currentDistance = 0
+    private var laps = 0
+    private var togo = 0
+    private var repetitions = 0
+    private var pause = 0
+
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_session)
         Sensey.getInstance().init(this)
-        init()
+        initData()
         initListeners()
     }
 
-    private fun init() {
-        getData()
+    override fun onDestroy() {
+        super.onDestroy()
+        resetValues()
+        stopwatch.stop()
+        timer.stop()
+    }
+
+    private fun initData() {
+        refreshData()
         showData()
         initStopwatchAndTimer()
+        pb_swim_goal.progress = 0
         buttonState = btnStartStop.buttonText
     }
 
-    private fun getData() {
+    private fun refreshData() {
         togo = intent.getIntExtra("repDistance", 0)
         repetitions = intent.getIntExtra("repetitions", 0)
         goalDistance = togo * repetitions
@@ -109,11 +119,10 @@ class Session : AppCompatActivity() {
             if (togo == 0) {
                 toggleState()
                 pauseSession()
-                getData()
+                refreshData()
             }
             pb_swim_goal.progress = ((currentDistance.toFloat() / goalDistance.toFloat()) * 100).toInt()
         } else finishSession()
-
     }
 
     private fun pauseSession() {
@@ -133,11 +142,19 @@ class Session : AppCompatActivity() {
         pb_swim_goal.progress = 100
         stopwatch.stop()
         btnStartStop.tvButtonText.setText(R.string.start)
-        btnStartStop.isEnabled = false
-        btnFinish.isEnabled = false
         saveInDatabase()
-        //create card in sessionList
-        finish()
+        resetValues()
+        startPreviousActivity<MainActivity>()
+    }
+
+    private fun resetValues() {
+        goalDistance = 0
+        currentDistance = 0
+        laps = 0
+        togo = 0
+        repetitions = 0
+        pause = 0
+        pb_swim_goal.progress = 0
     }
 
     private fun toggleState() = btnStartStop.tvButtonText.setText(if (buttonState == "Start") R.string.stop else R.string.start)

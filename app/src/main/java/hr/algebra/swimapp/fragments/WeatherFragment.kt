@@ -26,7 +26,6 @@ class WeatherFragment : Fragment(){
 
     @SuppressLint("SetTextI18n")
     private fun showWeatherData() {
-        println("GOT HERE")
         tvDescription.text = weatherDescription
         tvCityName.text = weatherCity
         tvTemperature.text = "${weatherTemp.toInt()}°C"

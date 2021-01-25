@@ -34,9 +34,9 @@ class MainActivity : AppCompatActivity() {
     private fun exitApp() {
         AlertDialog.Builder(this).apply {
             setTitle(R.string.exit)
-            setMessage("Are you sure?")
+            setMessage(getString(R.string.are_you_sure))
             setCancelable(true)
-            setPositiveButton("OK") { _, _ -> finish() }
+            setPositiveButton(getString(R.string.ok)) { _, _ -> finish() }
             setNegativeButton(getString(R.string.cancel), null)
             show()
         }

@@ -40,8 +40,7 @@ class SwimInfoProvider : ContentProvider() {
         selection: String?,
         selectionArgs: Array<String>?,
         sortOrder: String?
-    ): Cursor? =
-        repository.query(projection, selection, selectionArgs, sortOrder)
+    ): Cursor? = repository.query(projection, selection, selectionArgs, sortOrder)
 
     override fun update(uri: Uri, values: ContentValues?, selection: String?, selectionArgs: Array<String>?): Int {
         when (URI_MATCHER.match(uri)) {

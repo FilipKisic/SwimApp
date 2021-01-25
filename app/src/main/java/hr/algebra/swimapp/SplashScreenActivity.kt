@@ -2,21 +2,16 @@ package hr.algebra.swimapp
 
 import android.content.Intent
 import android.os.Bundle
-import android.os.Handler
-import android.os.Looper
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
 import hr.algebra.swimapp.framework.isOnline
-import hr.algebra.swimapp.framework.startActivity
 import hr.algebra.swimapp.services.WeatherService
 import hr.algebra.swimapp.services.getCurrentLocation
 import pub.devrel.easypermissions.EasyPermissions
 
-private const val DELAY = 6000L
-const val DATA_IMPORTED = "hr.algebra.swimapp.data_imported"
 lateinit var fusedLocationClient: FusedLocationProviderClient
 
 class SplashScreenActivity : AppCompatActivity() {
@@ -37,21 +32,13 @@ class SplashScreenActivity : AppCompatActivity() {
     }
 
     private fun loadData() {
-        //inside if getBooleanPreference(DATA_IMPORTED)
-        //remove if, in this case it is superfluous
-        if (false) {
-            Handler(Looper.getMainLooper()).postDelayed({
-                startActivity<MainActivity>()
-            }, DELAY)
-        } else {
-            if (isOnline()) {
-                Intent(this, WeatherService::class.java).apply {
-                    WeatherService.enqueueWork(this@SplashScreenActivity, this)
-                }
-            } else {
-                Toast.makeText(this, getString(R.string.no_connection_avaliable), Toast.LENGTH_LONG).show()
-                finish()
+        if (isOnline()) {
+            Intent(this, WeatherService::class.java).apply {
+                WeatherService.enqueueWork(this@SplashScreenActivity, this)
             }
+        } else {
+            Toast.makeText(this, getString(R.string.no_connection_avaliable), Toast.LENGTH_LONG).show()
+            finish()
         }
     }
 }

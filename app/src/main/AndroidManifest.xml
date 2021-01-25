@@ -37,6 +37,7 @@
             android:theme="@style/AppThemeNoActionBar" />
         <activity
             android:name=".NewSession"
+            android:noHistory="true"
             android:theme="@style/AppThemeNoActionBar" />
         <activity
             android:name=".Session"

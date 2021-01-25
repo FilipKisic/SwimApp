@@ -32,4 +32,7 @@
     <string name="course">Course: Application Development for Mobile Devices</string>
     <string name="permission_rationale">We need your location for fully functional application. You can change location permission in Settings.</string>
     <string name="weather">Weather</string>
+    <string name="startMessage">No sessions yet? Jump in the pool, make a change today!</string>
+    <string name="are_you_sure">Are you sure?</string>
+    <string name="ok">OK</string>
 </resources>
